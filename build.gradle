@@ -1,0 +1,43 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.7.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'war'
+
+war {
+    archiveName = "webhook.${extension}"
+}
+
+group = 'kr.co.kepco'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile("org.springframework.boot:spring-boot-starter-jdbc")
+	// compile "org.flywaydb:flyway-core:4.2.0"
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.9.1'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.9.1'
+    compile group: 'org.json', name: 'json', version: '20090211'
+    compile group: 'org.jdom', name: 'jdom', version: '2.0.0'
+    compile group: 'org.eclipse.jgit', name: 'org.eclipse.jgit', version: '4.9.0.201710071750-r'
+    compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.1.2'
+
+    providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+}
